@@ -1,0 +1,11 @@
+
+I want to track and compare simple multicast streams created with ICMP
+ping every second.  So inputting several pcap files started at the same
+time and output them one packet at a time. 
+
+* Add 1 sec resolution scale
+* Add support for reading in multiple pcap files
+* Normalize output, only one packet per 1 sec interval, per pcap
+
+=> Comparable output to see where drops occur and streams are joined.
+
