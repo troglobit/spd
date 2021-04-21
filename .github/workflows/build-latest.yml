@@ -6,35 +6,16 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
+    - name: checkout repo
+      uses: actions/checkout@v2
     - name: install deps
       run: sudo apt install -y libpcap-dev
     - name: make
       run: make
-    - name: Upload output file
-        uses: actions/upload-artifact@v2
-        with:
-          name: output-spd-file
-          path: spd
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download a single artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: output-spd-file    
-    uses: actions/create-release@v1
-    id: create_release
-    with:
-      draft: false
-      prerelease: false
-      release_name: latest
-      tag_name: latest
-      body_path: spd
-    env:
-      GITHUB_TOKEN: ${{ github.token }
+    - name: Archive code coverage results
+      uses: actions/upload-artifact@v2
+      with:
+        name: binaries
+        path: spd
