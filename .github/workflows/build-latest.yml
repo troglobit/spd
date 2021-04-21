@@ -14,7 +14,11 @@ jobs:
       run: sudo apt install -y libpcap-dev
     - name: make
       run: make
-    - name: Archive code coverage results
+    - name: Output Run ID
+      run: echo ${{ github.run_id }}
+    - name: Output Run Number
+      run: echo ${{ github.run_number }}
+    - name: Archive build
       uses: actions/upload-artifact@v2
       with:
         name: binaries
