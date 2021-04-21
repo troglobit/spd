@@ -8,17 +8,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: checkout repo
-      uses: actions/checkout@v2
-    - name: install deps
-      run: sudo apt install -y libpcap-dev
-    - name: make
+    - uses: actions/checkout@v2
+    - run: sudo apt install -y libpcap-dev
+    - name: Build project
       run: make
-    - name: Output Run ID
-      run: echo ${{ github.run_id }}
-    - name: Output Run Number
-      run: echo ${{ github.run_number }}
-    - name: Archive build
+    - name: Archive build artifacts
       uses: actions/upload-artifact@v2
       with:
         name: binaries
